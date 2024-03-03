@@ -50,6 +50,62 @@
 
 
 
+    
+        <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        
+            load: ['[tex]/mhchem'],
+        
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        
+            packages: {'[+]': ['mhchem']},
+        
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
           
 
 
@@ -222,125 +278,54 @@
   
   <main id="main-contain" class="mdui-container mdui-m-t-5">
     
+    <article class="mdui-card mdui-m-b-5 mdui-hoverable">    
+      
+      
+        <div class="post-header"> 
+  <a class="post-header-title" href="/2024/03/01/2024%E7%89%9B%E5%AE%A2%E5%AF%92%E5%81%87%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%E9%9B%86%E8%AE%AD%E8%90%A5%206/">2024牛客寒假算法基础集训营6</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      发布于:&nbsp;2024-03-01
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      更新于:&nbsp;2024-03-02
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      分类于:&nbsp;<a class="category-link" href="/categories/nowcoder/">nowcoder</a>
+    </span>
+    
+  </div>
+</div>   
+    
 
-<div class="mdui-card mdui-p-a-4 mdui-m-b-5">
-    <div class="page-describe">
-        目前共计 11 篇日志。
-    </div>
-    <div class="posts-collapse">
-        
-            
-            
-                <div class="collection-title">
-                    <a href="/archives/2024"><h2>2024<small>归档</small></h2></a>
-                </div>
-                
-            
 
-            <div class="collection-item">
-                <h3><a href="/2024/03/03/hello-world/">Hello World</a></h3>
-                <time itemprop="dateCreated" datetime=2024-03-03 >
-                    2024.03.03
-                </time>
-            </div>
-        
-            
-            
 
-            <div class="collection-item">
-                <h3><a href="/2024/03/03/%E7%89%9B%E5%AE%A2%E7%BB%83%E4%B9%A0%E8%B5%9B122/">牛客练习赛122</a></h3>
-                <time itemprop="dateCreated" datetime=2024-03-03 >
-                    2024.03.03
-                </time>
-            </div>
-        
-            
-            
+      
+      
+  <div class="tag-line-space"></div>
 
-            <div class="collection-item">
-                <h3><a href="/2024/03/02/AtCoder%20Beginner%20Contest%20343/">AtCoder Beginner Contest 343</a></h3>
-                <time itemprop="dateCreated" datetime=2024-03-02 >
-                    2024.03.02
-                </time>
-            </div>
+      
+      <div id="achieve-abstract" class="mdui-card-content mdui-p-x-4">
+        <div class="post-abstract mdui-typo ">
+          
+            <h1 id="A"><a href="#A" class="headerlink" title="A"></a>A</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; pr;</span><br><span class="line">    <span class="function">vector&lt;<span class="type">bool</span>&gt; <span class="title">not_pr</span><span class="params">(N)</span></span>;</span><br><span class="line">    <span class="keyword">auto</span> getpr = [&amp;](<span class="type">int</span> n)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">2</span>; i &lt;= n; ++i)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (!not_pr[i])</span><br><span class="line">                pr.<span class="built_in">push_back</span>(i);</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> p : pr)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (i * p &gt; n)</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                not_pr[i * p] = <span class="literal">true</span>;</span><br><span class="line">                <span class="keyword">if</span> (i % p == <span class="number">0</span>) <span class="comment">// 说明i*p已经被一个更小的i判断过了</span></span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="built_in">getpr</span>(<span class="number">100</span>);</span><br><span class="line">    ll l, r;</span><br><span class="line">    cin &gt;&gt; l &gt;&gt; r;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; pr.<span class="built_in">size</span>(); i++)</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = i + <span class="number">1</span>; j &lt; pr.<span class="built_in">size</span>(); j++)</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> k = j + <span class="number">1</span>; k &lt; pr.<span class="built_in">size</span>(); k++)</span><br><span class="line">            &#123;</span><br><span class="line">                ll res = pr[i] * pr[j] * pr[k];</span><br><span class="line">                <span class="keyword">if</span> (res &gt;= l &amp;&amp; res &lt;= r)</span><br><span class="line">                &#123;</span><br><span class="line">                    cout &lt;&lt; res &lt;&lt; endl;</span><br><span class="line">                    <span class="keyword">return</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;-1&quot;</span> &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        </div>
         
-            
-            
+        <div style="text-align:center;">
+          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2024/03/01/2024%E7%89%9B%E5%AE%A2%E5%AF%92%E5%81%87%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%E9%9B%86%E8%AE%AD%E8%90%A5%206/">阅读更多</a>
+        </div>
+      </div>
+    </article>
 
-            <div class="collection-item">
-                <h3><a href="/2024/03/02/Codeforces%20Round%20931%20(Div.%202)/">Codeforces Round 931 (Div. 2)</a></h3>
-                <time itemprop="dateCreated" datetime=2024-03-02 >
-                    2024.03.02
-                </time>
-            </div>
-        
-            
-            
-
-            <div class="collection-item">
-                <h3><a href="/2024/03/01/Codeforces%20Round%20930%20(Div.%202)/">Codeforces Round 930 (Div. 2)</a></h3>
-                <time itemprop="dateCreated" datetime=2024-03-01 >
-                    2024.03.01
-                </time>
-            </div>
-        
-            
-            
-
-            <div class="collection-item">
-                <h3><a href="/2024/03/01/Codeforces%20Round%20929%20(Div.%203)/">Codeforces Round 929 (Div. 3)</a></h3>
-                <time itemprop="dateCreated" datetime=2024-03-01 >
-                    2024.03.01
-                </time>
-            </div>
-        
-            
-            
-
-            <div class="collection-item">
-                <h3><a href="/2024/03/01/AtCoder%20Beginner%20Contest%20342/">AtCoder Beginner Contest 342</a></h3>
-                <time itemprop="dateCreated" datetime=2024-03-01 >
-                    2024.03.01
-                </time>
-            </div>
-        
-            
-            
-
-            <div class="collection-item">
-                <h3><a href="/2024/03/01/AtCoder%20Beginner%20Contest%20341/">AtCoder Beginner Contest 341</a></h3>
-                <time itemprop="dateCreated" datetime=2024-03-01 >
-                    2024.03.01
-                </time>
-            </div>
-        
-            
-            
-
-            <div class="collection-item">
-                <h3><a href="/2024/03/01/AtCoder%20Beginner%20Contest%20340/">AtCoder Beginner Contest 340</a></h3>
-                <time itemprop="dateCreated" datetime=2024-03-01 >
-                    2024.03.01
-                </time>
-            </div>
-        
-            
-            
-
-            <div class="collection-item">
-                <h3><a href="/2024/03/01/AtCoder%20Beginner%20Contest%20339/">AtCoder Beginner Contest 339</a></h3>
-                <time itemprop="dateCreated" datetime=2024-03-01 >
-                    2024.03.01
-                </time>
-            </div>
-        
-    </div>
-</div>
 
 
   <nav style="text-align: center;">
     <div class="pagination">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/"><i class="iconfont icon-angle-right"></i></a>
+      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
     </div>
   </nav>
 
